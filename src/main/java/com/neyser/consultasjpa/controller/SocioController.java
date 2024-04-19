@@ -6,10 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/socios")
@@ -33,20 +31,20 @@ public class SocioController {
         return socioService.crearSocio(socio);
     }
 
-    @PutMapping("{/id}")
-    public Socio actualizarsocio(@PathVariable Long idSocio, @RequestBody Socio socio){
-        return socioService.actualizarSocio(socio);
+    @PutMapping("{id}")
+    public Socio actualizarsocio1(@PathVariable("id") Long idSocio, @RequestBody Socio socio){
+        return socioService.actualizarSocio1(idSocio, socio);
+    }
+
+    @PatchMapping("{id}")
+    public Socio actualizarsocio2(@PathVariable("id") Long idSocio,@RequestBody Map<String, Object> fields){
+        return socioService.actualizarSocio2(idSocio, fields);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> eliminarSocio(@PathVariable("id") Long idSocio){
         socioService.eliminarSocio(idSocio);
         return ResponseEntity.ok("Socio con Id: "+idSocio+" eliminado correctamente");
-    }
-
-    @PatchMapping
-    public void actualizarParcialSocio(@RequestBody Socio socio){
-        socioService.actualizarSocio(socio);
     }
 
 }
