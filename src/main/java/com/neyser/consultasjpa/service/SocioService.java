@@ -29,19 +29,12 @@ public class SocioService {
         return socioRepository.findAll();
     }
 
-    public Socio actualizarSocio(Socio socio){
+    public Socio actualizarSocioPut(Socio socio){
         return socioRepository.save(socio);
     }
 
-    public Socio actualizarSocio1(Long idsocio, Socio socio){
-        Socio socio1 = socioRepository.findById(idsocio).get();
-        socio1 = socio;
-        return socioRepository.save(socio1);
-    }
-
-    public Socio actualizarSocio2(Long idSocio, Map<String, Object> fields){
+    public Socio actualizarSocioPatch(Long idSocio, Map<String, Object> fields){
         Optional<Socio> socio = socioRepository.findById(idSocio);
-
         if(socio.isPresent()){
             fields.forEach((key, value) ->{
                 Field field = ReflectionUtils.findField(Socio.class, key);

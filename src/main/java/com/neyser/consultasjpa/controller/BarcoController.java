@@ -20,6 +20,12 @@ public class BarcoController{
         return barcoService.listarBarcos();
     }
 
+    @GetMapping("{id}")
+    public Barco obtenerBarco(@PathVariable("id") Long idBarco){
+        return barcoService.obtenerBarco(idBarco);
+    }
+
+
     @PostMapping
     public void crearBarco(@RequestBody Barco barco){
         barcoService.crearBarco(barco);
@@ -33,6 +39,6 @@ public class BarcoController{
     @DeleteMapping("{id}")
     public ResponseEntity<String> eliminarBarco(@PathVariable("id") Long idBarco){
         barcoService.eliminarBarco(idBarco);
-        return ResponseEntity.ok("Todo deleted successfully!.");
+        return ResponseEntity.ok("Barco eliminado correctamente");
     }
 }

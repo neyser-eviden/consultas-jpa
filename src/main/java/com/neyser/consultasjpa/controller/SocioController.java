@@ -31,14 +31,14 @@ public class SocioController {
         return socioService.crearSocio(socio);
     }
 
-    @PutMapping("{id}")
-    public Socio actualizarsocio1(@PathVariable("id") Long idSocio, @RequestBody Socio socio){
-        return socioService.actualizarSocio1(idSocio, socio);
+    @PutMapping
+    public Socio actualizarsocioPut(@RequestBody Socio socio){
+        return socioService.actualizarSocioPut(socio);
     }
 
     @PatchMapping("{id}")
-    public Socio actualizarsocio2(@PathVariable("id") Long idSocio,@RequestBody Map<String, Object> fields){
-        return socioService.actualizarSocio2(idSocio, fields);
+    public Socio actualizarsocioPatch(@PathVariable("id") Long idSocio,@RequestBody Map<String, Object> fields){
+        return socioService.actualizarSocioPatch(idSocio, fields);
     }
 
     @DeleteMapping("{id}")
