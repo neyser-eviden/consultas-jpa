@@ -17,8 +17,8 @@ public class BarcoService {
 
     private final BarcoRepository barcoRepository;
 
-    public void crearBarco(Barco barco){
-        barcoRepository.save(barco);
+    public Barco crearBarco(Barco barco){
+        return barcoRepository.save(barco);
     }
 
     public Barco obtenerBarco(Long idBarco){
