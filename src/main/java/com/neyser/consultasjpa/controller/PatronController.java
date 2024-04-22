@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,26 +16,37 @@ public class PatronController {
 
     private final PatronService patronService;
 
-
     @GetMapping
     public List<Patron> listarPatrones(){
         return patronService.listarPatrones();
     }
 
+    @GetMapping("{id}")
+    public Patron obtenerPatron(@PathVariable("id") Long idPatron){
+        return patronService.obtenerPatron(idPatron);
+    }
+
     @PostMapping
-    public void crearPatron(@RequestBody Patron patron){
-        patronService.crearPatron(patron);
+    public Patron crearPatron(@RequestBody Patron patron){
+        return patronService.crearPatron(patron);
     }
 
     @PutMapping
-    public void actualizarPatron(@RequestBody Patron patron){
-        patronService.actualizarPatron(patron);
+    public Patron actualizarPatronPut(@RequestBody Patron patron){
+        return patronService.actualizarPatronPut(patron);
+    }
+
+    @PatchMapping("{id}")
+    public Patron actualizarPatronPatch(@PathVariable("id") Long idPatron,@RequestBody Map<String, Object> fields){
+        return patronService.actualizarPatronPatch(idPatron, fields);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> eliminarPatron(@PathVariable("id") Long idPatron){
         patronService.eliminarPatron(idPatron);
-        return ResponseEntity.ok("Todo deleted successfully!.");
+        return ResponseEntity.ok("Patron con Id: "+idPatron+" eliminado correctamente");
     }
+
+
 
 }
