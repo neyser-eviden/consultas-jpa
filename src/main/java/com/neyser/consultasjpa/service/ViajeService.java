@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -38,9 +39,21 @@ public class ViajeService {
         Optional<Viaje> viaje = viajeRepository.findById(idViaje);
         if(viaje.isPresent()){
             fields.forEach((key, value) ->{
+                System.out.println("Key:" + key +" | Value: "+value);
+
+
+
                 Field field = ReflectionUtils.findField(Viaje.class, key);
                 field.setAccessible(true);
-                ReflectionUtils.setField(field, viaje.get(), value);
+
+                if(key.equals("fecha_salida"))
+                {
+                    ReflectionUtils.setField(field, viaje.get(), Timestamp.valueOf((String) value));
+                } else
+                {
+                    ReflectionUtils.setField(field, viaje.get(), value);
+                }
+
             });
 
             return viajeRepository.save(viaje.get());

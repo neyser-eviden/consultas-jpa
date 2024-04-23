@@ -18,9 +18,8 @@ public class Viaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fecha_salida")
     @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp fechaSalida;
+    private Timestamp fecha_salida;
 
     @Basic
     private String destino;
