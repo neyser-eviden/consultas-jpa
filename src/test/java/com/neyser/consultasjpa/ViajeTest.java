@@ -42,11 +42,11 @@ class ViajeTest {
     public void listarViajes() {
         Viaje viaje1 = new Viaje();
         viaje1.setDestino("Barcelona");
-        viaje1.setFecha_salida(Timestamp.valueOf("2024-08-28 13:52:05"));
+        viaje1.setFecha_salida(Timestamp.valueOf("2024-10-30 13:52:05"));
 
         Viaje viaje2 = new Viaje();
         viaje2.setDestino("Madrid");
-        viaje2.setFecha_salida(Timestamp.valueOf("2024-08-28 13:52:05"));
+        viaje2.setFecha_salida(Timestamp.valueOf("2024-11-25 13:52:05"));
 
         when(viajeRepository.findAll()).thenReturn(Stream
                 .of(viaje1, viaje2).collect(Collectors.toList()));
